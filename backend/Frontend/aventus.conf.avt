@@ -9,7 +9,6 @@
 				"./src/*"
 			],
 			"compile": [{
-				"output": "../wwwroot/js/front.js",
 				"package": "../../storybook/static/def/shop.package.avt"
 			}],
 			"stories": {
@@ -21,9 +20,6 @@
 				},
 				{
 					"uri": "@AventusUI"
-				},
-				{
-					"uri": "https://store.aventusjs.com/libs/MaterialIcon/1_0_0/MaterialIcon@Main.package.avt"
 				}
 			]
 		}

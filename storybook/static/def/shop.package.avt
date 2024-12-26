@@ -94,5 +94,5 @@ class CategorieRouter extends AventusSharp.Routes.StorableRouter<Data.Categorie>
 {}
 //#endregion html //
 //#region dependances //
-[{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"@AventusSharp","npm":""},{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"@AventusUI","npm":""},{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"https://store.aventusjs.com/libs/MaterialIcon/1_0_0/MaterialIcon@Main.package.avt","npm":""}]
+[{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"@AventusSharp","npm":""},{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"@AventusUI","npm":""}]
 //#endregion dependances //
