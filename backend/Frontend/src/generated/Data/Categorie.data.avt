@@ -1,0 +1,9 @@
+namespace Data {
+
+	@Convertible()
+	export class Categorie extends AventusSharp.Data.Storable implements Aventus.IData {
+		public static override get Fullname(): string { return "Shop.Data.Categorie, Shop"; }
+		public Nom!: string;
+	}
+
+}

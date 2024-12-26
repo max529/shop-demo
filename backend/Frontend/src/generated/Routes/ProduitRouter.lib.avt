@@ -1,0 +1,15 @@
+import { Produit } from '../Data/Produit.data.avt';
+import { ShopRouter } from '../ShopRouter.lib.avt';
+
+namespace Routes {
+
+	export class ProduitRouter extends AventusSharp.Routes.StorableRouter<Produit> {
+		public constructor(router?: Aventus.HttpRouter) {
+			super(router ?? new ShopRouter());
+		}
+		public StorableName() {
+			return "Produit";
+		}
+	}
+
+}

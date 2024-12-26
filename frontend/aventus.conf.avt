@@ -1,0 +1,27 @@
+{
+	"module": "ShopFrontend",
+	"componentPrefix": "sp",
+	"build": [
+		{
+			"name": "Main",
+			"src": [
+				"./src/*"
+			],
+			"compile": [{
+				"output": "./dist/shopfrontend.js"
+			}],
+			"dependances": [
+				{
+					"uri": "https://shop.rayuki.com/def/shop.package.avt"
+				}
+			]
+		}
+	],
+	"static": [
+		{
+			"name": "Main",
+			"input": "./static",
+			"output": "./dist"
+		}
+	]
+}

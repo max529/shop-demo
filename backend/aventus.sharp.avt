@@ -1,0 +1,9 @@
+{
+    "csProj": "./Shop.csproj",
+    "outputPath": "./Frontend/src/generated",
+    "httpRouter": {
+        "host": "\"https://shop.rayuki.com\"",
+        "createRouter": true,
+        "routerName": "ShopRouter"
+    }
+}

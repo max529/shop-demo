@@ -1,0 +1,43 @@
+import type { Produit } from "Shop@Main#1.0.0:Shop.Data.package.avt";
+import { ProduitRAM } from "../../ram/Produit.ram.avt";
+import { ProduitRouter } from "Shop@Main#1.0.0:Shop.Routes.package.avt";
+
+export class App extends Aventus.WebComponent implements Aventus.DefaultComponent {
+
+    //#region static
+
+    //#endregion
+
+
+    //#region props
+
+    //#endregion
+
+
+    //#region variables
+    @Watch()
+    public produits: Produit[] = [];
+    //#endregion
+
+
+    //#region constructor
+
+    //#endregion
+
+
+    //#region methods
+    private async loadData() {
+        // let ram = ProduitRAM.getInstance();
+        // let result = await ram.getList();
+        // this.produits = result;
+
+        this.produits = (await (new ProduitRouter()).GetAll()).result!;
+    }
+    protected override postCreation(): void {
+        super.postCreation();
+
+        this.loadData();
+    }
+    //#endregion
+
+}

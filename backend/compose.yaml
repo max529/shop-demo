@@ -1,0 +1,46 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  db:
+    image: mysql:8.0.31
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - nginx_network
+    command: --log_error_verbosity=2   # errors and warnings
+
+  server:
+    image: max529/shop:latest
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=db
+
+      - LOGGING__LOGLEVEL__DEFAULT=Error
+      - LOGGING__LOGLEVEL__MICROSOFT=Error
+    networks:
+      - nginx_network
+    restart: "always"
+
+volumes:
+  db_data:
+networks:
+  nginx_network:
+    name: nginx_network
+    external: true

@@ -1,0 +1,98 @@
+// Shop@Main:1.0.0
+//#region js def //
+declare global {
+
+namespace Shop{
+namespace Routes {
+class ShopRouter extends Aventus.HttpRouter {
+    protected defineOptions(options: Aventus.HttpRouterOptions): Aventus.HttpRouterOptions;
+}
+}
+
+namespace Data {
+@Convertible()
+class Utilisateur extends AventusSharp.Data.Storable implements Aventus.IData {
+    static get Fullname(): string;
+    NomUtilisateur: string;
+}
+}
+
+namespace Routes {
+class UtilisateurRouter extends AventusSharp.Routes.StorableRouter<Data.Utilisateur> {
+    constructor(router?: Aventus.HttpRouter);
+    StorableName(): string;
+}
+}
+
+namespace Data {
+@Convertible()
+class Categorie extends AventusSharp.Data.Storable implements Aventus.IData {
+    static get Fullname(): string;
+    Nom: string;
+}
+}
+
+namespace Data {
+@Convertible()
+class Commentaire extends AventusSharp.Data.Storable implements Aventus.IData {
+    static get Fullname(): string;
+    Contenu: string;
+    Date: Date;
+    Data: any;
+    Utilisateur: Data.Utilisateur;
+    ProduitId: number;
+}
+}
+
+namespace Routes {
+class CommentaireRouter extends AventusSharp.Routes.StorableRouter<Data.Commentaire> {
+    constructor(router?: Aventus.HttpRouter);
+    StorableName(): string;
+}
+}
+
+namespace Data {
+@Convertible()
+class Produit extends AventusSharp.Data.Storable implements Aventus.IData {
+    static get Fullname(): string;
+    Nom: string;
+    CodeBarre: string;
+    Prix: number;
+    Data: any;
+    Categorie: Data.Categorie;
+    Commentaires: Data.Commentaire[];
+}
+}
+
+namespace Routes {
+class ProduitRouter extends AventusSharp.Routes.StorableRouter<Data.Produit> {
+    constructor(router?: Aventus.HttpRouter);
+    StorableName(): string;
+}
+}
+
+namespace Routes {
+class CategorieRouter extends AventusSharp.Routes.StorableRouter<Data.Categorie> {
+    constructor(router?: Aventus.HttpRouter);
+    StorableName(): string;
+}
+}
+
+	}
+}
+//#endregion js def //
+//#region js src //
+{"namespace":"Shop","available":[{"code":"Routes.ShopRouter=class ShopRouter extends Aventus.HttpRouter {\n    defineOptions(options) {\n        options.url = \"https://shop.rayuki.com\" + \"\";\n        return options;\n    }\n}\nRoutes.ShopRouter.Namespace=`Shop.Routes`;\r\n_.Routes.ShopRouter=Routes.ShopRouter;\r\n","dependances":[{"fullName":"Aventus.HttpRouter","isStrong":true},{"fullName":"Aventus.HttpRouterOptions","isStrong":false}],"fullName":"Shop.Routes.ShopRouter","required":false,"type":1,"isExported":true,"convertibleName":""},{"code":"Data.Utilisateur=class Utilisateur extends AventusSharp.Data.Storable {\n    static get Fullname() { return \"Shop.Data.Utilisateur, Shop\"; }\n    NomUtilisateur;\n}\nData.Utilisateur.Namespace=`Shop.Data`;\r\nData.Utilisateur.$schema={...(AventusSharp.Data.Storable?.$schema ?? {}), \"NomUtilisateur\":\"string\"};\r\nAventus.Converter.register(Data.Utilisateur.Fullname, Data.Utilisateur);\r\n_.Data.Utilisateur=Data.Utilisateur;\r\n","dependances":[{"fullName":"AventusSharp.Data.Storable","isStrong":true},{"fullName":"Aventus.IData","isStrong":true},{"fullName":"Convertible","isStrong":false}],"fullName":"Shop.Data.Utilisateur","required":false,"type":2,"isExported":true,"convertibleName":"Fullname"},{"code":"Routes.UtilisateurRouter=class UtilisateurRouter extends AventusSharp.Routes.StorableRouter {\n    constructor(router) {\n        super(router ?? new Routes.ShopRouter());\n    }\n    StorableName() {\n        return \"Utilisateur\";\n    }\n}\nRoutes.UtilisateurRouter.Namespace=`Shop.Routes`;\r\n_.Routes.UtilisateurRouter=Routes.UtilisateurRouter;\r\n","dependances":[{"fullName":"AventusSharp.Routes.StorableRouter","isStrong":true},{"fullName":"Shop.Data.Utilisateur","isStrong":false},{"fullName":"Aventus.HttpRouter","isStrong":false},{"fullName":"Shop.Routes.ShopRouter","isStrong":false}],"fullName":"Shop.Routes.UtilisateurRouter","required":false,"type":1,"isExported":true,"convertibleName":""},{"code":"Data.Categorie=class Categorie extends AventusSharp.Data.Storable {\n    static get Fullname() { return \"Shop.Data.Categorie, Shop\"; }\n    Nom;\n}\nData.Categorie.Namespace=`Shop.Data`;\r\nData.Categorie.$schema={...(AventusSharp.Data.Storable?.$schema ?? {}), \"Nom\":\"string\"};\r\nAventus.Converter.register(Data.Categorie.Fullname, Data.Categorie);\r\n_.Data.Categorie=Data.Categorie;\r\n","dependances":[{"fullName":"AventusSharp.Data.Storable","isStrong":true},{"fullName":"Aventus.IData","isStrong":true},{"fullName":"Convertible","isStrong":false}],"fullName":"Shop.Data.Categorie","required":false,"type":2,"isExported":true,"convertibleName":"Fullname"},{"code":"Data.Commentaire=class Commentaire extends AventusSharp.Data.Storable {\n    static get Fullname() { return \"Shop.Data.Commentaire, Shop\"; }\n    Contenu;\n    Date;\n    Data;\n    Utilisateur;\n    ProduitId;\n}\nData.Commentaire.Namespace=`Shop.Data`;\r\nData.Commentaire.$schema={...(AventusSharp.Data.Storable?.$schema ?? {}), \"Contenu\":\"string\",\"Date\":\"Date\",\"Utilisateur\":\"Shop.Data.Utilisateur\",\"ProduitId\":\"number\"};\r\nAventus.Converter.register(Data.Commentaire.Fullname, Data.Commentaire);\r\n_.Data.Commentaire=Data.Commentaire;\r\n","dependances":[{"fullName":"AventusSharp.Data.Storable","isStrong":true},{"fullName":"Aventus.IData","isStrong":true},{"fullName":"Convertible","isStrong":false},{"fullName":"Date","isStrong":false},{"fullName":"Shop.Data.Utilisateur","isStrong":false}],"fullName":"Shop.Data.Commentaire","required":false,"type":2,"isExported":true,"convertibleName":"Fullname"},{"code":"Routes.CommentaireRouter=class CommentaireRouter extends AventusSharp.Routes.StorableRouter {\n    constructor(router) {\n        super(router ?? new Routes.ShopRouter());\n    }\n    StorableName() {\n        return \"Commentaire\";\n    }\n}\nRoutes.CommentaireRouter.Namespace=`Shop.Routes`;\r\n_.Routes.CommentaireRouter=Routes.CommentaireRouter;\r\n","dependances":[{"fullName":"AventusSharp.Routes.StorableRouter","isStrong":true},{"fullName":"Shop.Data.Commentaire","isStrong":false},{"fullName":"Aventus.HttpRouter","isStrong":false},{"fullName":"Shop.Routes.ShopRouter","isStrong":false}],"fullName":"Shop.Routes.CommentaireRouter","required":false,"type":1,"isExported":true,"convertibleName":""},{"code":"Data.Produit=class Produit extends AventusSharp.Data.Storable {\n    static get Fullname() { return \"Shop.Data.Produit, Shop\"; }\n    Nom;\n    CodeBarre;\n    Prix;\n    Data;\n    Categorie;\n    Commentaires = [];\n}\nData.Produit.Namespace=`Shop.Data`;\r\nData.Produit.$schema={...(AventusSharp.Data.Storable?.$schema ?? {}), \"Nom\":\"string\",\"CodeBarre\":\"string\",\"Prix\":\"number\",\"Categorie\":\"Shop.Data.Categorie\",\"Commentaires\":\"Shop.Data.Commentaire\"};\r\nAventus.Converter.register(Data.Produit.Fullname, Data.Produit);\r\n_.Data.Produit=Data.Produit;\r\n","dependances":[{"fullName":"AventusSharp.Data.Storable","isStrong":true},{"fullName":"Aventus.IData","isStrong":true},{"fullName":"Convertible","isStrong":false},{"fullName":"Shop.Data.Categorie","isStrong":false},{"fullName":"Shop.Data.Commentaire","isStrong":false}],"fullName":"Shop.Data.Produit","required":false,"type":2,"isExported":true,"convertibleName":"Fullname"},{"code":"Routes.ProduitRouter=class ProduitRouter extends AventusSharp.Routes.StorableRouter {\n    constructor(router) {\n        super(router ?? new Routes.ShopRouter());\n    }\n    StorableName() {\n        return \"Produit\";\n    }\n}\nRoutes.ProduitRouter.Namespace=`Shop.Routes`;\r\n_.Routes.ProduitRouter=Routes.ProduitRouter;\r\n","dependances":[{"fullName":"AventusSharp.Routes.StorableRouter","isStrong":true},{"fullName":"Shop.Data.Produit","isStrong":false},{"fullName":"Aventus.HttpRouter","isStrong":false},{"fullName":"Shop.Routes.ShopRouter","isStrong":false}],"fullName":"Shop.Routes.ProduitRouter","required":false,"type":1,"isExported":true,"convertibleName":""},{"code":"Routes.CategorieRouter=class CategorieRouter extends AventusSharp.Routes.StorableRouter {\n    constructor(router) {\n        super(router ?? new Routes.ShopRouter());\n    }\n    StorableName() {\n        return \"Categorie\";\n    }\n}\nRoutes.CategorieRouter.Namespace=`Shop.Routes`;\r\n_.Routes.CategorieRouter=Routes.CategorieRouter;\r\n","dependances":[{"fullName":"AventusSharp.Routes.StorableRouter","isStrong":true},{"fullName":"Shop.Data.Categorie","isStrong":false},{"fullName":"Aventus.HttpRouter","isStrong":false},{"fullName":"Shop.Routes.ShopRouter","isStrong":false}],"fullName":"Shop.Routes.CategorieRouter","required":false,"type":1,"isExported":true,"convertibleName":""}],"existing":[]}
+//#endregion js src //
+//#region css def //
+{}
+//#endregion css def //
+//#region css //
+{}
+//#endregion css //
+//#region html //
+{}
+//#endregion html //
+//#region dependances //
+[{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"@AventusSharp","npm":""},{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"@AventusUI","npm":""},{"include":"need","subDependancesInclude":{},"version":"x.x.x","uri":"https://store.aventusjs.com/libs/MaterialIcon/1_0_0/MaterialIcon@Main.package.avt","npm":""}]
+//#endregion dependances //

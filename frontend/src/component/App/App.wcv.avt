@@ -1,0 +1,3 @@
+for(let produit of this.produits) {
+    <div>{{ produit.Nom }}</div>
+}

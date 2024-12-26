@@ -1,0 +1,16 @@
+import { Categorie } from './Categorie.data.avt';
+import { Commentaire } from './Commentaire.data.avt';
+
+namespace Data {
+
+	@Convertible()
+	export class Produit extends AventusSharp.Data.Storable implements Aventus.IData {
+		public static override get Fullname(): string { return "Shop.Data.Produit, Shop"; }
+		public Nom!: string;
+		public CodeBarre!: string;
+		public Prix!: number;
+		public Categorie!: Categorie;
+		public Commentaires: Commentaire[] = [];
+	}
+
+}

@@ -1,0 +1,5 @@
+export { ShopRouter } from "../../__src/src/generated/ShopRouter.lib.js"
+export { UtilisateurRouter } from "../../__src/src/generated/Routes/UtilisateurRouter.lib.js"
+export { CommentaireRouter } from "../../__src/src/generated/Routes/CommentaireRouter.lib.js"
+export { ProduitRouter } from "../../__src/src/generated/Routes/ProduitRouter.lib.js"
+export { CategorieRouter } from "../../__src/src/generated/Routes/CategorieRouter.lib.js"

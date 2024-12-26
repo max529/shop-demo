@@ -1,0 +1,32 @@
+import { RamHttp } from "Aventus@Sharp:AventusSharp.RAM.package.avt";
+import { ProduitRouter } from "Shop@Main#1.0.0:Shop.Routes.package.avt";
+import { Produit } from "Shop@Main#1.0.0:Shop.Data.package.avt";
+
+export class ProduitRAM extends RamHttp<Produit> implements Aventus.IRam {
+    /**
+     * @inheritdoc
+     */
+    public override defineRoutes(): AventusSharp.Routes.StorableRouter<Produit> {
+       return new ProduitRouter();
+    }
+
+	/**
+	 * Create a singleton to store data
+	 */
+	public static getInstance(): ProduitRAM {
+		return Aventus.Instance.get(ProduitRAM);
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public override defineIndexKey(): keyof Produit {
+		return 'Id';
+	}
+	/**
+	 * @inheritdoc
+	 */
+	protected override getTypeForData(objJson: Aventus.KeysObject<Produit> | Produit): new () => Produit {
+		return Produit;
+	}
+}

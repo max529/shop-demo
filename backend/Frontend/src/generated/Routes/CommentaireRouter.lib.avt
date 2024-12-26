@@ -1,0 +1,15 @@
+import { Commentaire } from '../Data/Commentaire.data.avt';
+import { ShopRouter } from '../ShopRouter.lib.avt';
+
+namespace Routes {
+
+	export class CommentaireRouter extends AventusSharp.Routes.StorableRouter<Commentaire> {
+		public constructor(router?: Aventus.HttpRouter) {
+			super(router ?? new ShopRouter());
+		}
+		public StorableName() {
+			return "Commentaire";
+		}
+	}
+
+}

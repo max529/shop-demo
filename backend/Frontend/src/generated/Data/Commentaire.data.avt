@@ -1,0 +1,14 @@
+import { Utilisateur } from './Utilisateur.data.avt';
+
+namespace Data {
+
+	@Convertible()
+	export class Commentaire extends AventusSharp.Data.Storable implements Aventus.IData {
+		public static override get Fullname(): string { return "Shop.Data.Commentaire, Shop"; }
+		public Contenu!: string;
+		public Date!: Date;
+		public Utilisateur!: Utilisateur;
+		public ProduitId!: number;
+	}
+
+}
